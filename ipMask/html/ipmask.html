@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../css/style.css">
+		<title>IP mask & subnet calculator</title>
+	</head>
+	<body>
+		<h1>IP mask and subnet calculator</h1>
+		<div>
+			<form id="choice">
+				<p>You want to:</p>
+				<p>
+					<input type="radio" name="choice" value="1" id="ipmask" /><label for="ipmask"> Get an IP range from a given mask value</label><br>
+					<input type="radio" name="choice" value="2" id="subnet" /><label for="subnet"> Get a mask value from a given number of hosts</label>
+				</p>	
+			</form>
+		</div>
+		<div id="input">
+		</div>
+		<div id="error"></div>
+		<div id="result">
+			<h3>Result:</h3>
+			<div id="info"></div>
+			<p>
+				<label for="address">Address:</label>
+				<input type="text" name="address" id="address">
+			</p>
+			<p>
+				<label for="bitmask">Bitmask:</label>
+				<input type="text" name="bitmask" id="bitmask">
+			</p>
+			<p>
+				<label for="netmask">Netmask:</label>
+				<input type="text" name="netmask" id="netmask">
+			</p>
+			<p>
+				<label for="Wildcard">Wildcard:</label>
+				<input type="text" name="wildcard" id="wildcard">
+			</p>
+			<p>
+				<label for="network">Network:</label>
+				<input type="text" name="network" id="network">
+			</p>
+			<p>
+				<label for="hostmin">HostMin:</label>
+				<input type="text" name="hostmin" id="hostmin">
+			</p>
+			<p>
+				<label for="hostmax">HostMax:</label>
+				<input type="text" name="hostmax" id="hostmax">
+			</p>
+			<p>
+				<label for="broadcast">Broadcast:</label>
+				<input type="text" name="broadcast" id="broadcast">
+			</p>
+			<p>
+				<label for="hosts">Hosts:</label>
+				<input type="text" name="hosts" id="hosts">
+			</p>
+		</div>
+
+		<script src="../js/test.js"></script>
+	</body>
+</html>
