@@ -28,41 +28,42 @@ result.style.visibility = "hidden";
 form.addEventListener("submit", function(e) {
     result.style.visibility = "visible";
     result.innerHTML = "";
+    // These variables will store the user's input:
     var targetStartDate = new Date(startDate.value);
     var targetEndDate = new Date(endDate.value);
     var targetStartTime = startTime.value.split("");
     var targetEndTime = endTime.value.split("");
+    // Setting the time for the given dates:
     targetStartDate.setHours(targetStartTime[0]);
     targetStartDate.setMinutes(targetStartTime[1]);
+    targetStartDate.setSeconds(0);
     targetEndDate.setHours(targetEndTime[0]);
     targetEndDate.setMinutes(targetEndTime[1]);
+    targetEndDate.setSeconds(0);
+    // Calculating the time interval and setting the days | hours | minutes | seconds values:
+    var interval = 0;
+    var days = 0;
+    var hours = 0;
+    var minutes = 0;
+    var seconds = 0;
+
+    // Displaying the result:
     var answer = document.createElement("p");
+
     if (targetStartDate > targetEndDate) {
         answer.innerHTML =
             "Your vacation <strong>cannot</strong> start after it ends !";
     } else {
         if (now < targetStartDate) {
             answer.innerHTML =
-                "Today, we are " +
-                now.toLocaleDateString("en-EN", DATE_FORMAT) +
-                ".<br>" +
-                "Your holidays start on: " +
-                targetStartDate.toLocaleDateString("en-EN", DATE_FORMAT) +
-                ". <br> Hold tight, there is (are) still " +
                 Math.ceil((targetStartDate - now) / 86400000) +
-                " day(s) remaining !";
+                " day(s) to go before your vacation !";
         } else if (now > targetStartDate && now < targetEndDate) {
             answer.innerHTML =
-                "Today, we are " +
-                now.toLocaleDateString("en-EN", DATE_FORMAT) +
-                ".<br>You are currently on vacation, and there is (are) " +
-                Math.ceil((targetEndDate - now) / 86400000) +
-                " day(s) left. Enjoy !";
+                Math.ceil((targetEndDate - now) / 86400000) + " day(s) left. Enjoy !";
         } else {
             answer.innerHTML =
-                "Today, we are " +
-                now.toLocaleDateString("en-EN", DATE_FORMAT) +
-                ".<br>Your vacation ended " +
+                "Your vacation ended " +
                 Math.floor((now - targetEndDate) / 86400000) +
                 " day(s) ago. Wait for the next one !";
         }
