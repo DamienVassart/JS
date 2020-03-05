@@ -21,6 +21,24 @@ function twoDigits(n) {
     return n < 10 ? "0" + n : n;
 }
 
+function pad(n, str) {
+    if (n < 1) {
+        return "";
+    } else if (n === 1) {
+        return n + str + " ";
+    } else if (n > 1) {
+        return n + str + "s ";
+    }
+}
+
+function interval(a, b) {
+    var d = Math.floor((a - b) / 86400000);
+    var h = Math.floor((a - b) / 3600000) % 24;
+    var m = Math.floor((a - b) / 60000) % 60;
+    var s = Math.floor((a - b) / 1000) % 60;
+    return pad(d, " day") + pad(h, " hour") + pad(twoDigits(m), " minute") + pad(twoDigits(s), " second");
+}
+
 startTime.defaultValue = "00:00";
 endTime.defaultValue = "00:00";
 result.style.visibility = "hidden";
@@ -28,11 +46,13 @@ result.style.visibility = "hidden";
 form.addEventListener("submit", function(e) {
     result.style.visibility = "visible";
     result.innerHTML = "";
+
     // These variables will store the user's input:
     var targetStartDate = new Date(startDate.value);
     var targetEndDate = new Date(endDate.value);
     var targetStartTime = startTime.value.split("");
     var targetEndTime = endTime.value.split("");
+
     // Setting the time for the given dates:
     targetStartDate.setHours(targetStartTime[0]);
     targetStartDate.setMinutes(targetStartTime[1]);
@@ -40,12 +60,6 @@ form.addEventListener("submit", function(e) {
     targetEndDate.setHours(targetEndTime[0]);
     targetEndDate.setMinutes(targetEndTime[1]);
     targetEndDate.setSeconds(0);
-    // Calculating the time interval and setting the days | hours | minutes | seconds values:
-    var interval = 0;
-    var days = 0;
-    var hours = 0;
-    var minutes = 0;
-    var seconds = 0;
 
     // Displaying the result:
     var answer = document.createElement("p");
@@ -55,17 +69,12 @@ form.addEventListener("submit", function(e) {
             "Your vacation <strong>cannot</strong> start after it ends !";
     } else {
         if (now < targetStartDate) {
-            answer.innerHTML =
-                Math.ceil((targetStartDate - now) / 86400000) +
-                " day(s) to go before your vacation !";
+            answer.innerHTML = "Hold tight, there's still <br>" + interval(targetStartDate, now) + " to go before your vacation !";
         } else if (now > targetStartDate && now < targetEndDate) {
-            answer.innerHTML =
-                Math.ceil((targetEndDate - now) / 86400000) + " day(s) left. Enjoy !";
+            answer.innerHTML = "Booom ! You are on vacation and you have <br>" + interval(targetEndDate, now) + " left. Enjoy !";
         } else {
             answer.innerHTML =
-                "Your vacation ended " +
-                Math.floor((now - targetEndDate) / 86400000) +
-                " day(s) ago. Wait for the next one !";
+                "Oh, noes ! Seems like your vacation ended <br>" + interval(now, targetEndDate) + " ago. Wait for the next one !";
         }
     }
 

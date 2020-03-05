@@ -1,0 +1,23 @@
+{
+    "name": "html-template",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.html",
+    "scripts": {
+        "start": "serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DamienVassart/JS"
+    },
+    "keywords": [],
+    "author": "Damien Vassart",
+    "license": "",
+    "bugs": {
+        "url": "https://github.com/DamienVassart/JS/issues"
+    },
+    "homepage": "https://github.com/DamienVassart/JS/tree/master/holidayChecker",
+    "devDependencies": {
+        "serve": "^11.2.0"
+    }
+}
