@@ -22,13 +22,9 @@ function twoDigits(n) {
 }
 
 function pad(n, str) {
-    if (n < 1) {
-        return "";
-    } else if (n === 1) {
-        return n + str + " ";
-    } else if (n > 1) {
-        return n + str + "s ";
-    }
+    if (n < 1) return "";
+    else if (n === 1) return n + str + " ";
+    else if (n > 1) return n + str + "s ";
 }
 
 function interval(a, b) {
