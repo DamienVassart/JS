@@ -8,7 +8,7 @@ const DATE_FORMAT = {
     second: "2-digit"
 };
 
-var now = new Date(Date.now());
+var currentDateTime = new Date(Date.now());
 
 var form = document.getElementById("form");
 var startDate = document.getElementById("start-date");
@@ -24,8 +24,8 @@ function twoDigits(n) {
 
 // adds a 's' the the words 'day', 'hour', 'minute' & 'second' if they come after a number bigger than 1:
 function pad(n, str) {
-    if (n < 1) return "";
-    else if (n === 1) return n + str + " ";
+    if (n === "00" || n === 0) return "";
+    else if (n === "01" || n === 1) return n + str + " ";
     else if (n > 1) return n + str + "s ";
 }
 
@@ -38,10 +38,10 @@ function interval(a, b) {
     return pad(d, " day") + pad(h, " hour") + pad(twoDigits(m), " minute") + pad(twoDigits(s), " second") + "</p>";
 };
 
-// Time input fields being optional, a default value is set to 00:00 (12:00 AM)
+// Time input fields being optional, the default value is set to 00:00 (12:00 AM)
 startTime.defaultValue = "00:00";
 endTime.defaultValue = "00:00";
-// before the user sends input, the div containing the result is hidden:
+// before the user sends input, the div #result is hidden:
 result.style.visibility = "hidden";
 
 form.addEventListener("submit", function(e) {
@@ -68,14 +68,21 @@ form.addEventListener("submit", function(e) {
         result.innerHTML =
             "<p>Your vacation <strong>cannot</strong> start after it ends !</p>";
     } else {
-        if (now < targetStartDate) {
-            result.innerHTML = "<p>" + interval(targetStartDate, now) + " remaining.</p>";
-        } else if (now > targetStartDate && now < targetEndDate) {
-            result.innerHTML = "<p>" + interval(targetEndDate, now) + "</p><p> of vacation left.</p>";
+        if (currentDateTime < targetStartDate) {
+            result.innerHTML = "<p>" + interval(targetStartDate, Date.now()) + " remaining.</p>";
+            setInterval(function() {
+                result.innerHTML = "<p>" + interval(targetStartDate, Date.now()) + " remaining.</p>";
+            }, 1000);
+        } else if (currentDateTime > targetStartDate && currentDateTime < targetEndDate) {
+            result.innerHTML = "<p>" + interval(targetEndDate, Date.now()) + "</p><p> of vacation left.</p>";
+            setInterval(function() {
+                result.innerHTML = "<p>" + interval(targetEndDate, Date.now()) + "</p><p> of vacation left.</p>";
+            }, 1000);
         } else {
-            result.innerHTML = "<p>Vacation ended </p><p>";
-            result.innerHTML += interval(now, targetEndDate);
-            result.innerHTML += "</p><p> ago.</p>";
+            result.innerHTML = "<p>Vacation ended </p><p>" + interval(Date.now(), targetEndDate) + "</p><p> ago.</p>";
+            setInterval(function() {
+                result.innerHTML = "<p>Vacation ended </p><p>" + interval(Date.now(), targetEndDate) + "</p><p> ago.</p>";
+            }, 1000);
         }
     }
 
