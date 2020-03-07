@@ -105,6 +105,7 @@ label {
     position: absolute;
     top: 540px;
     width: 440px;
+    text-align: center;
     padding: 10px 20px;
     border-radius: 5px;
 }

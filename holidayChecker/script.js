@@ -10,12 +10,14 @@ const DATE_FORMAT = {
 
 var currentDateTime = new Date(Date.now());
 
-var form = document.getElementById("form");
-var startDate = document.getElementById("start-date");
-var startTime = document.getElementById("start-time");
-var endDate = document.getElementById("end-date");
-var endTime = document.getElementById("end-time");
-var result = document.getElementById("result");
+const form = document.querySelector("form");
+
+const startDate = document.getElementById("start-date");
+const startTime = document.getElementById("start-time");
+const endDate = document.getElementById("end-date");
+const endTime = document.getElementById("end-time");
+
+const result = document.getElementById("result");
 
 // adds a '0' before the number of minutes & the number of seconds if it is less than 10:
 function twoDigits(n) {
@@ -38,21 +40,15 @@ function interval(a, b) {
     return pad(d, " day") + pad(h, " hour") + pad(twoDigits(m), " minute") + pad(twoDigits(s), " second") + "</p>";
 };
 
-// Time input fields being optional, the default value is set to 00:00 (12:00 AM)
-startTime.defaultValue = "00:00";
-endTime.defaultValue = "00:00";
-// before the user sends input, the div #result is hidden:
-result.style.visibility = "hidden";
 
 form.addEventListener("submit", function(e) {
     result.style.visibility = "visible";
-    result.innerHTML = "";
 
     // These variables will store the user's input:
     var targetStartDate = new Date(startDate.value);
     var targetEndDate = new Date(endDate.value);
-    var targetStartTime = startTime.value.split(""); // time input field sends data as a string; we split it to separate the hours and minutes and store them in an array
-    var targetEndTime = endTime.value.split(""); // same than above
+    var targetStartTime = startTime.value.split(":"); // time input field sends data as a string; we split it to separate the hours and minutes and store them in an array
+    var targetEndTime = endTime.value.split(":"); // same than above
 
     // Setting the hours and minutes for the given dates:
     targetStartDate.setHours(targetStartTime[0]);
