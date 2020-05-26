@@ -24,7 +24,7 @@ function twoDigits(n) {
     return n < 10 ? "0" + n : n;
 }
 
-// adds a 's' the the words 'day', 'hour', 'minute' & 'second' if they come after a number bigger than 1:
+// adds a 's' to the the words 'day', 'hour', 'minute' & 'second' if they come after a number bigger than 1:
 function pad(n, str) {
     if (n === "00" || n === 0) return "";
     else if (n === "01" || n === 1) return n + str + " ";
