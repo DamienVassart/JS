@@ -8,7 +8,7 @@ const DATE_FORMAT = {
     second: "2-digit"
 };
 
-var currentDateTime = new Date(Date.now());
+var currentDateTime = new Date();
 
 const form = document.querySelector("form");
 
@@ -67,12 +67,22 @@ form.addEventListener("submit", function(e) {
         if (currentDateTime < targetStartDate) {
             result.innerHTML = "<p>" + interval(targetStartDate, Date.now()) + " remaining.</p>";
             setInterval(function() {
-                result.innerHTML = "<p>" + interval(targetStartDate, Date.now()) + " remaining.</p>";
+                if (targetStartDate > Date.now()) {
+                    result.innerHTML = "<p>" + interval(targetStartDate, Date.now()) + " remaining.</p>";
+                } else {
+                    clearInterval(this);
+                    result.innerHTML = "<p>You are now on vacation ! Enjoy !</p>";
+                }
             }, 1000);
         } else if (currentDateTime > targetStartDate && currentDateTime < targetEndDate) {
             result.innerHTML = "<p>" + interval(targetEndDate, Date.now()) + "</p><p> of vacation left.</p>";
             setInterval(function() {
-                result.innerHTML = "<p>" + interval(targetEndDate, Date.now()) + "</p><p> of vacation left.</p>";
+                if (targetEndDate > Date.now()) {
+                    result.innerHTML = "<p>" + interval(targetEndDate, Date.now()) + "</p><p> of vacation left.</p>";
+                } else {
+                    clearInterval(this);
+                    result.innerHTML = "<p>Your vacation just ended.</p>"
+                }
             }, 1000);
         } else {
             result.innerHTML = "<p>Vacation ended </p><p>" + interval(Date.now(), targetEndDate) + "</p><p> ago.</p>";
@@ -81,6 +91,5 @@ form.addEventListener("submit", function(e) {
             }, 1000);
         }
     }
-
     e.preventDefault();
 });
