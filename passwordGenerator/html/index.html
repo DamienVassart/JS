@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-16">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<title>Password Generator</title>
+	</head>
+	<body>
+		<h1>Password Generator</h1>
+		<form id="form">
+			<div id="length-setting">
+				<label for="length">Password length: </label>
+				<span id="min-length">8&nbsp;</span><input type="range" min="8" max="64" value="10" id="length" name="length"><span id="max-length"></span>
+			</div>
+			<fieldset id="characters">
+				<legend>Character types</legend>
+				<label for="digits">Digits (0-9)</label>
+				<input type="checkbox" id="digits" name="digits" checked /><br>
+				<label for="lowers">Lowercase letters (a-z)</label>
+				<input type="checkbox" id="lowers" name="lowers" checked /><br>
+				<label for="uppers">Uppercase letters (A-Z)</label>
+				<input type="checkbox" id="uppers" name="uppers" /><br>
+				<label for="specials">Special characters & symbols</label>
+				<input type="checkbox" id="symbols" name="symbols" /><br>
+			</fieldset>
+			<fieldset id="options">
+				<legend>Options</legend>
+				<label for="no-duplicates">Don't use the same character more than once</label>
+				<input type="checkbox" id="no-duplicates" name="no-duplicates" /><br>
+			</fieldset>
+		</form>
+		<div id="result">
+			<label for="password">Generated password: </label>
+			<input type="text" id="password" name="password" size="64" />
+		</div>
+		<script type="text/javascript" src="../js/script.js"></script>
+	</body>
+</html>
