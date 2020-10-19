@@ -1,2 +1,2 @@
-Personal works in JavaScript
+Personal works coded in JavaScript
 
