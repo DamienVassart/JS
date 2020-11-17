@@ -33,6 +33,7 @@ class App extends Component {
     const todoList = this.state.todos.map(todo => <TodoItem key={todo.id} todo={todo} handleChange={this.handleChange} />)
     return (
       <div>
+        <h1>Todo List</h1>
         {todoList}
       </div>
     )
