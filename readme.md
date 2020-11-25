@@ -1,6 +1,6 @@
 # Personnal Stuff
 
-## Personal works coded in JavaScript
+## Personnal works coded in JavaScript
 
 * Converter: this app converts decimal, binary and hexadecimal values.
 * fionacciSequence: this app returns an array with the n first digits of the Fibonacci suite.
