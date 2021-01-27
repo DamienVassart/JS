@@ -9,5 +9,5 @@
 * **isPrimary**: for every number from 2 to 100, this app will display if this number is primary or not
 * **passwordGenerator**: the name speaks for itself :) 
 * **rangeOfNumbers**: this function will return an array which begins with startNum and ends with endNum
-* **timeInerval**: a little time interval calculator.
+* **timeInterval**: a little time interval calculator.
 * **todo-list**: POC of a To-Do List app in React.
